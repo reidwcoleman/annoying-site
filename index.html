@@ -68,16 +68,12 @@
             position: relative;
             margin: 0 auto 50px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow:
-                0 0 60px rgba(34, 197, 94, 0.3),
-                0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 60px rgba(34, 197, 94, 0.3), 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .soccer-ball:hover {
             transform: scale(1.08) translateY(-5px);
-            box-shadow:
-                0 0 80px rgba(34, 197, 94, 0.4),
-                0 30px 60px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 80px rgba(34, 197, 94, 0.4), 0 30px 60px rgba(0, 0, 0, 0.4);
         }
 
         .soccer-ball::before {
@@ -119,7 +115,6 @@
             text-transform: uppercase;
         }
 
-        /* Dropdown styles */
         .dropdown-container {
             position: fixed;
             top: 20px;
@@ -205,6 +200,400 @@
             background: rgba(255, 255, 255, 0.1);
             margin: 8px 0;
         }
+
+        /* BSOD Styles */
+        .bsod-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0078d4;
+            z-index: 99999;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 8% 15%;
+            cursor: default;
+        }
+
+        .bsod-overlay.active {
+            display: block;
+        }
+
+        .bsod-sad {
+            font-size: 120px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .bsod-title {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .bsod-text {
+            color: white;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .bsod-percent {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .bsod-qr {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: white;
+            margin-right: 20px;
+            vertical-align: top;
+            padding: 5px;
+        }
+
+        .bsod-qr-inner {
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                #000 0px, #000 5px,
+                #fff 5px, #fff 10px
+            );
+            background-size: 10px 10px;
+        }
+
+        .bsod-info {
+            display: inline-block;
+            color: white;
+            font-size: 12px;
+            line-height: 1.6;
+            vertical-align: top;
+        }
+
+        .bsod-stop {
+            color: white;
+            font-size: 12px;
+            margin-top: 30px;
+        }
+
+        .bsod-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .bsod-passcode {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .bsod-passcode input {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            text-align: center;
+            width: 200px;
+        }
+
+        .bsod-passcode input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .bsod-passcode p {
+            color: rgba(255,255,255,0.5);
+            font-size: 11px;
+            margin-top: 10px;
+        }
+
+        /* Virus Alert Styles */
+        .virus-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 99999;
+            animation: virusPulse 0.5s infinite;
+        }
+
+        .virus-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes virusPulse {
+            0%, 100% { background: rgba(139,0,0,0.9); }
+            50% { background: rgba(0,0,0,0.9); }
+        }
+
+        .virus-popup {
+            background: linear-gradient(180deg, #1a1a2e 0%, #0d0d15 100%);
+            border: 3px solid #ff0000;
+            border-radius: 0;
+            width: 90%;
+            max-width: 700px;
+            box-shadow: 0 0 50px rgba(255,0,0,0.5), 0 0 100px rgba(255,0,0,0.3);
+            position: relative;
+            animation: virusShake 0.3s infinite;
+        }
+
+        @keyframes virusShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
+        }
+
+        .virus-header {
+            background: linear-gradient(90deg, #8b0000, #ff0000, #8b0000);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .virus-header-title {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .virus-header-title::before {
+            content: '⚠️';
+            font-size: 18px;
+        }
+
+        .virus-close {
+            background: #ff0000;
+            border: none;
+            color: white;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .virus-body {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .virus-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: virusIconPulse 0.5s infinite;
+        }
+
+        @keyframes virusIconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .virus-title {
+            color: #ff0000;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255,0,0,0.5);
+        }
+
+        .virus-subtitle {
+            color: #ff6666;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .virus-threats {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .virus-threat {
+            color: #ff4444;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .virus-threat::before {
+            content: '⚠';
+            color: #ff0000;
+        }
+
+        .virus-progress {
+            background: #1a1a1a;
+            height: 30px;
+            border-radius: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 1px solid #ff0000;
+        }
+
+        .virus-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ff6600);
+            width: 0%;
+            animation: virusProgress 3s ease-in-out infinite;
+        }
+
+        @keyframes virusProgress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 30%; }
+        }
+
+        .virus-warning {
+            color: #ffff00;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .virus-call {
+            background: #ff0000;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+            animation: callPulse 0.5s infinite;
+        }
+
+        @keyframes callPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255,0,0,0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(255,0,0,0.8); }
+        }
+
+        .virus-passcode {
+            margin-top: 20px;
+        }
+
+        .virus-passcode input {
+            background: #1a1a1a;
+            border: 2px solid #ff0000;
+            color: white;
+            padding: 10px 20px;
+            font-size: 14px;
+            text-align: center;
+            width: 200px;
+        }
+
+        .virus-passcode p {
+            color: #666;
+            font-size: 10px;
+            margin-top: 8px;
+        }
+
+        /* Cracked Screen Styles */
+        .crack-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99998;
+            pointer-events: none;
+        }
+
+        .crack-overlay.active {
+            display: block;
+            pointer-events: auto;
+        }
+
+        .crack-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .crack-impact {
+            position: absolute;
+            top: 35%;
+            left: 45%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0.5) 30%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(2px);
+        }
+
+        .crack-passcode-box {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 99999;
+        }
+
+        .crack-passcode-box input {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+            text-align: center;
+            width: 180px;
+        }
+
+        .crack-passcode-box p {
+            color: rgba(255,255,255,0.5);
+            font-size: 10px;
+            margin-top: 8px;
+        }
+
+        .crack-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 99999;
+        }
     </style>
 </head>
 <body>
@@ -240,41 +629,141 @@
         <p class="warning">Allow popups for full experience</p>
     </div>
 
-    <p class="hint">Press ? to stop</p>
+    <p class="hint">Passcode: 1234</p>
 
-    <!-- Prank overlays -->
-    <div id="bsod" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#0078d7; z-index:9999; padding:10%; font-family:Segoe UI,sans-serif;">
-        <p style="color:white; font-size:8vw; margin-bottom:20px;">:(</p>
-        <p style="color:white; font-size:2vw; margin-bottom:40px;">Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.</p>
-        <p style="color:white; font-size:1.5vw;">0% complete</p>
-        <p style="color:white; font-size:1vw; margin-top:60px; opacity:0.7;">For more information about this issue and possible fixes, visit https://windows.com/stopcode</p>
-        <p style="color:white; font-size:1vw; margin-top:20px; opacity:0.7;">If you call a support person, give them this info:<br>Stop code: CRITICAL_PROCESS_DIED</p>
-        <button onclick="prank('reset')" style="position:absolute;bottom:20px;right:20px;padding:10px 20px;background:rgba(255,255,255,0.2);border:none;color:white;cursor:pointer;border-radius:5px;">Press to fix</button>
-    </div>
-
-    <div id="crack" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9998; pointer-events:none;">
-        <svg width="100%" height="100%" style="position:absolute;top:0;left:0;">
-            <line x1="45%" y1="0" x2="50%" y2="100%" stroke="rgba(0,0,0,0.8)" stroke-width="3"/>
-            <line x1="45%" y1="30%" x2="20%" y2="60%" stroke="rgba(0,0,0,0.6)" stroke-width="2"/>
-            <line x1="48%" y1="50%" x2="80%" y2="70%" stroke="rgba(0,0,0,0.6)" stroke-width="2"/>
-            <line x1="47%" y1="20%" x2="70%" y2="10%" stroke="rgba(0,0,0,0.5)" stroke-width="2"/>
-            <line x1="46%" y1="60%" x2="30%" y2="90%" stroke="rgba(0,0,0,0.5)" stroke-width="2"/>
-            <line x1="50%" y1="40%" x2="90%" y2="50%" stroke="rgba(0,0,0,0.4)" stroke-width="1"/>
-            <line x1="44%" y1="70%" x2="10%" y2="80%" stroke="rgba(0,0,0,0.4)" stroke-width="1"/>
-        </svg>
-    </div>
-
-    <div id="virus" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:30px; border-radius:8px; z-index:9999; box-shadow:0 20px 60px rgba(0,0,0,0.5); text-align:center; min-width:400px;">
-        <div style="color:#d32f2f; font-size:48px; margin-bottom:15px;">⚠️</div>
-        <h2 style="color:#333; margin-bottom:10px;">VIRUS DETECTED!</h2>
-        <p style="color:#666; margin-bottom:20px; font-size:14px;">Your computer has been infected with 47 viruses!<br>Call Microsoft Support immediately: 1-800-FAKE-NUM</p>
-        <div style="background:#f5f5f5; padding:15px; border-radius:4px; margin-bottom:20px;">
-            <p style="color:#d32f2f; font-weight:bold; font-size:12px;">TROJAN.MALWARE.BITCOIN.MINER<br>WORM.SPAM.EMAIL<br>RANSOMWARE.CRYPTOLOCKER</p>
+    <!-- BSOD Overlay -->
+    <div class="bsod-overlay" id="bsod">
+        <button class="bsod-close" onclick="tryCloseBsod()">×</button>
+        <div class="bsod-sad">:(</div>
+        <div class="bsod-title">Your PC ran into a problem and needs to restart.</div>
+        <div class="bsod-text">
+            We're just collecting some error info, and then we'll restart for you.<br><br>
+            If you'd like to know more, you can search online later for this error: CRITICAL_PROCESS_DIED
         </div>
-        <button onclick="prank('reset')" style="background:#d32f2f; color:white; border:none; padding:12px 30px; font-size:14px; cursor:pointer; border-radius:4px;">REMOVE VIRUSES NOW</button>
+        <div class="bsod-percent" id="bsodPercent">0% complete</div>
+        <div>
+            <div class="bsod-qr">
+                <div class="bsod-qr-inner"></div>
+            </div>
+            <div class="bsod-info">
+                For more information about this issue and<br>
+                possible fixes, visit<br>
+                https://www.windows.com/stopcode<br><br>
+                If you call a support person, give them this info:<br>
+                Stop code: DRIVER_IRQL_NOT_LESS_OR_EQUAL<br>
+                What failed: ntoskrnl.exe
+            </div>
+        </div>
+        <div class="bsod-stop">
+            Stop code: CRITICAL_PROCESS_DIED<br>
+            What failed: SYSTEM_SERVICE_EXCEPTION
+        </div>
+        <div class="bsod-passcode">
+            <input type="text" id="bsodPasscode" placeholder="Enter passcode" onkeyup="checkBsodPasscode(event)">
+            <p>Enter passcode to fix</p>
+        </div>
+    </div>
+
+    <!-- Virus Alert Overlay -->
+    <div class="virus-overlay" id="virus">
+        <div class="virus-popup">
+            <div class="virus-header">
+                <div class="virus-header-title">Windows Defender Security Warning</div>
+                <button class="virus-close" onclick="tryCloseVirus()">×</button>
+            </div>
+            <div class="virus-body">
+                <div class="virus-icon">🛑</div>
+                <div class="virus-title">CRITICAL THREAT DETECTED!</div>
+                <div class="virus-subtitle">Your computer has been compromised!</div>
+
+                <div class="virus-threats" id="virusThreats">
+                    <div class="virus-threat">Trojan.GenericKD.46845123 - C:\Windows\System32\drivers</div>
+                    <div class="virus-threat">Spyware.PasswordStealer.Gen - C:\Users\AppData\Roaming</div>
+                    <div class="virus-threat">Ransomware.WannaCry.B - C:\Program Files</div>
+                    <div class="virus-threat">Worm.Conficker.C - C:\Windows\Temp</div>
+                    <div class="virus-threat">Backdoor.IRCBot.Gen - C:\Users\Downloads</div>
+                    <div class="virus-threat">Rootkit.MBR.Infection - Master Boot Record</div>
+                    <div class="virus-threat">Keylogger.Agent.XYZ - C:\Windows\System32</div>
+                    <div class="virus-threat">BankingTrojan.Zeus.Gen - Browser Extensions</div>
+                    <div class="virus-threat">CryptoMiner.BitCoin.Miner - CPU Processes</div>
+                    <div class="virus-threat">Adware.Popup.Aggressive - Registry Keys</div>
+                </div>
+
+                <div class="virus-progress">
+                    <div class="virus-progress-bar"></div>
+                </div>
+
+                <div class="virus-warning">⚠️ YOUR PERSONAL DATA IS AT RISK! ⚠️</div>
+
+                <button class="virus-call">CALL NOW: 1-800-VIRUS-HELP</button>
+
+                <div class="virus-passcode">
+                    <input type="text" id="virusPasscode" placeholder="Enter passcode" onkeyup="checkVirusPasscode(event)">
+                    <p>IT Department passcode required</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cracked Screen Overlay -->
+    <div class="crack-overlay" id="crack">
+        <button class="crack-close" onclick="tryCloseCrack()">×</button>
+        <div class="crack-impact"></div>
+        <svg class="crack-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <!-- Main impact point -->
+            <circle cx="450" cy="350" r="20" fill="rgba(255,255,255,0.1)"/>
+
+            <!-- Major cracks from impact -->
+            <path d="M450 350 L200 100" stroke="rgba(0,0,0,0.9)" stroke-width="4" fill="none"/>
+            <path d="M450 350 L700 50" stroke="rgba(0,0,0,0.8)" stroke-width="3" fill="none"/>
+            <path d="M450 350 L900 300" stroke="rgba(0,0,0,0.85)" stroke-width="4" fill="none"/>
+            <path d="M450 350 L800 700" stroke="rgba(0,0,0,0.9)" stroke-width="3" fill="none"/>
+            <path d="M450 350 L500 900" stroke="rgba(0,0,0,0.8)" stroke-width="4" fill="none"/>
+            <path d="M450 350 L100 600" stroke="rgba(0,0,0,0.85)" stroke-width="3" fill="none"/>
+            <path d="M450 350 L50 350" stroke="rgba(0,0,0,0.9)" stroke-width="4" fill="none"/>
+            <path d="M450 350 L300 800" stroke="rgba(0,0,0,0.8)" stroke-width="3" fill="none"/>
+
+            <!-- Secondary cracks -->
+            <path d="M300 200 L150 250" stroke="rgba(0,0,0,0.7)" stroke-width="2" fill="none"/>
+            <path d="M300 200 L350 50" stroke="rgba(0,0,0,0.6)" stroke-width="2" fill="none"/>
+            <path d="M600 150 L750 100" stroke="rgba(0,0,0,0.7)" stroke-width="2" fill="none"/>
+            <path d="M600 150 L650 250" stroke="rgba(0,0,0,0.6)" stroke-width="2" fill="none"/>
+            <path d="M700 400 L850 350" stroke="rgba(0,0,0,0.7)" stroke-width="2" fill="none"/>
+            <path d="M700 400 L750 500" stroke="rgba(0,0,0,0.6)" stroke-width="2" fill="none"/>
+            <path d="M600 600 L700 550" stroke="rgba(0,0,0,0.7)" stroke-width="2" fill="none"/>
+            <path d="M600 600 L550 700" stroke="rgba(0,0,0,0.6)" stroke-width="2" fill="none"/>
+            <path d="M480 700 L550 750" stroke="rgba(0,0,0,0.7)" stroke-width="2" fill="none"/>
+            <path d="M480 700 L400 800" stroke="rgba(0,0,0,0.6)" stroke-width="2" fill="none"/>
+            <path d="M250 550 L150 500" stroke="rgba(0,0,0,0.7)" stroke-width="2" fill="none"/>
+            <path d="M250 550 L300 650" stroke="rgba(0,0,0,0.6)" stroke-width="2" fill="none"/>
+            <path d="M200 400 L100 450" stroke="rgba(0,0,0,0.7)" stroke-width="2" fill="none"/>
+            <path d="M200 400 L250 300" stroke="rgba(0,0,0,0.6)" stroke-width="2" fill="none"/>
+
+            <!-- Tertiary small cracks -->
+            <path d="M350 150 L380 100" stroke="rgba(0,0,0,0.5)" stroke-width="1" fill="none"/>
+            <path d="M550 200 L580 150" stroke="rgba(0,0,0,0.5)" stroke-width="1" fill="none"/>
+            <path d="M750 350 L800 320" stroke="rgba(0,0,0,0.5)" stroke-width="1" fill="none"/>
+            <path d="M650 500 L700 480" stroke="rgba(0,0,0,0.5)" stroke-width="1" fill="none"/>
+            <path d="M520 650 L560 630" stroke="rgba(0,0,0,0.5)" stroke-width="1" fill="none"/>
+            <path d="M380 700 L350 750" stroke="rgba(0,0,0,0.5)" stroke-width="1" fill="none"/>
+            <path d="M200 500 L170 530" stroke="rgba(0,0,0,0.5)" stroke-width="1" fill="none"/>
+            <path d="M280 300 L250 270" stroke="rgba(0,0,0,0.5)" stroke-width="1" fill="none"/>
+
+            <!-- Glass shards effect -->
+            <polygon points="430,330 470,330 450,380" fill="rgba(255,255,255,0.05)"/>
+            <polygon points="460,340 490,360 470,390" fill="rgba(255,255,255,0.03)"/>
+            <polygon points="420,360 440,390 400,380" fill="rgba(255,255,255,0.04)"/>
+        </svg>
+        <div class="crack-passcode-box">
+            <input type="text" id="crackPasscode" placeholder="Enter passcode" onkeyup="checkCrackPasscode(event)">
+            <p>Enter passcode to repair screen</p>
+        </div>
     </div>
 
     <script>
+        const PASSCODE = "1234";
+        let bsodInterval;
+
         function toggleDropdown() {
             document.getElementById('dropdown').classList.toggle('open');
         }
@@ -313,24 +802,83 @@
                     document.body.style.transition = 'filter 0.5s';
                     break;
                 case 'bsod':
-                    document.getElementById('bsod').style.display = 'block';
+                    showBsod();
                     break;
                 case 'crack':
-                    document.getElementById('crack').style.display = 'block';
+                    document.getElementById('crack').classList.add('active');
                     break;
                 case 'virus':
-                    document.getElementById('virus').style.display = 'block';
+                    document.getElementById('virus').classList.add('active');
                     break;
                 case 'reset':
-                    document.body.style.transform = '';
-                    document.body.style.animation = '';
-                    document.body.style.cursor = '';
-                    document.body.style.filter = '';
-                    document.getElementById('bsod').style.display = 'none';
-                    document.getElementById('crack').style.display = 'none';
-                    document.getElementById('virus').style.display = 'none';
+                    resetAll();
                     break;
             }
+        }
+
+        function showBsod() {
+            document.getElementById('bsod').classList.add('active');
+            let percent = 0;
+            bsodInterval = setInterval(() => {
+                percent += Math.random() * 2;
+                if (percent > 99) percent = Math.random() * 30;
+                document.getElementById('bsodPercent').textContent = Math.floor(percent) + '% complete';
+            }, 500);
+        }
+
+        function tryCloseBsod() {
+            // Pretend to close then reopen
+            document.getElementById('bsod').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('bsod').classList.add('active');
+            }, 300);
+        }
+
+        function tryCloseVirus() {
+            document.getElementById('virus').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('virus').classList.add('active');
+            }, 200);
+        }
+
+        function tryCloseCrack() {
+            document.getElementById('crack').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('crack').classList.add('active');
+            }, 300);
+        }
+
+        function checkBsodPasscode(e) {
+            if (document.getElementById('bsodPasscode').value === PASSCODE) {
+                clearInterval(bsodInterval);
+                document.getElementById('bsod').classList.remove('active');
+                document.getElementById('bsodPasscode').value = '';
+            }
+        }
+
+        function checkVirusPasscode(e) {
+            if (document.getElementById('virusPasscode').value === PASSCODE) {
+                document.getElementById('virus').classList.remove('active');
+                document.getElementById('virusPasscode').value = '';
+            }
+        }
+
+        function checkCrackPasscode(e) {
+            if (document.getElementById('crackPasscode').value === PASSCODE) {
+                document.getElementById('crack').classList.remove('active');
+                document.getElementById('crackPasscode').value = '';
+            }
+        }
+
+        function resetAll() {
+            document.body.style.transform = '';
+            document.body.style.animation = '';
+            document.body.style.cursor = '';
+            document.body.style.filter = '';
+            clearInterval(bsodInterval);
+            document.getElementById('bsod').classList.remove('active');
+            document.getElementById('crack').classList.remove('active');
+            document.getElementById('virus').classList.remove('active');
         }
 
         function addShakeStyle() {
@@ -353,7 +901,7 @@
 
         document.addEventListener('keydown', function(e) {
             if (e.key === '?' || (e.shiftKey && e.key === '/')) {
-                prank('reset');
+                resetAll();
             }
         });
     </script>
