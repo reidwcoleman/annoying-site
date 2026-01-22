@@ -756,15 +756,19 @@
         function handleYes() {
             hideReadyModal();
             // Spawn chaos windows with crazy AI/virus content
+            // Using unique window names and full features string forces new windows, not tabs
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => {
-                    const w = 400 + Math.random() * 250;
-                    const h = 350 + Math.random() * 200;
+                    const w = 450 + Math.random() * 200;
+                    const h = 400 + Math.random() * 150;
                     const l = Math.random() * (screen.width - w);
                     const t = Math.random() * (screen.height - h);
-                    window.open('popup.html', '_blank',
-                        `width=${w},height=${h},left=${l},top=${t}`);
-                }, i * 100);
+                    window.open(
+                        'popup.html',
+                        'chaos_' + Date.now() + '_' + i,
+                        `width=${Math.floor(w)},height=${Math.floor(h)},left=${Math.floor(l)},top=${Math.floor(t)},menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=no`
+                    );
+                }, i * 80);
             }
         }
 
