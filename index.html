@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Annoying Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #00ff88, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .soccer-ball {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle at 30% 30%, #4ade80, #22c55e 40%, #16a34a 70%, #15803d);
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            box-shadow:
+                0 20px 60px rgba(34, 197, 94, 0.4),
+                inset -15px -15px 40px rgba(0, 0, 0, 0.3),
+                inset 10px 10px 40px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            margin: 0 auto 40px;
+        }
+
+        .soccer-ball:hover {
+            transform: scale(1.1);
+            box-shadow:
+                0 30px 80px rgba(34, 197, 94, 0.6),
+                inset -15px -15px 40px rgba(0, 0, 0, 0.3),
+                inset 10px 10px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .soccer-ball::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.3);
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        }
+
+        .soccer-ball::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            filter: blur(10px);
+        }
+
+        .warning {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            padding: 15px 25px;
+            background: rgba(255, 100, 100, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 100, 100, 0.2);
+            margin-bottom: 15px;
+        }
+
+        .popup-note {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.75rem;
+        }
+
+        .hint {
+            position: fixed;
+            bottom: 30px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .chaos-active {
+            animation: shake 0.1s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .screen-flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: flash 0.2s infinite;
+        }
+
+        @keyframes flash {
+            0%, 100% { background: transparent; }
+            50% { background: rgba(0, 255, 100, 0.15); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContent">
+        <h1>The Annoying Site</h1>
+        <p class="subtitle">Click the ball if you dare</p>
+        <div class="soccer-ball" id="soccerBall" onclick="startChaos()"></div>
+        <p class="warning">Warning: This will be extremely annoying</p>
+        <p class="popup-note">Allow popups for full effect</p>
+    </div>
+
+    <p class="hint">Press ? to stop</p>
+
+    <script>
+        let chaosActive = false;
+        let popupInterval = null;
+        let openWindows = [];
+        let flashElement = null;
+
+        function startChaos() {
+            if (chaosActive) return;
+            chaosActive = true;
+
+            document.body.classList.add('chaos-active');
+            document.getElementById('mainContent').style.opacity = '0.3';
+
+            // First show "Are you ready" popup
+            const readyWidth = 500;
+            const readyHeight = 400;
+            const readyLeft = Math.floor((screen.width - readyWidth) / 2);
+            const readyTop = Math.floor((screen.height - readyHeight) / 2);
+            const readyFeatures = `width=${readyWidth},height=${readyHeight},left=${readyLeft},top=${readyTop},menubar=no,toolbar=no,location=no,status=no`;
+
+            try {
+                window.open('ready.html', '_blank', readyFeatures);
+            } catch (e) {}
+        }
+
+        function beginChaos() {
+            // Create screen flash
+            flashElement = document.createElement('div');
+            flashElement.className = 'screen-flash';
+            document.body.appendChild(flashElement);
+
+            // Spawn 30 popups every burst
+            popupInterval = setInterval(spawnPopupBurst, 500);
+
+            // Initial burst of 30
+            spawnPopupBurst();
+        }
+
+        // Listen for "Yes" click from ready popup
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'startChaos' && chaosActive) {
+                beginChaos();
+            }
+            if (e.key === 'stopChaos') {
+                stopChaos();
+            }
+        });
+
+        function spawnPopupBurst() {
+            if (!chaosActive) return;
+
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => openPopupWindow(), i * 20);
+            }
+        }
+
+        function openPopupWindow() {
+            if (!chaosActive) return;
+
+            const width = 250 + Math.floor(Math.random() * 200);
+            const height = 150 + Math.floor(Math.random() * 150);
+            const left = Math.floor(Math.random() * (screen.width - width));
+            const top = Math.floor(Math.random() * (screen.height - height));
+
+            const features = `width=${width},height=${height},left=${left},top=${top},menubar=no,toolbar=no,location=no,status=no`;
+
+            try {
+                const newWindow = window.open('popup.html', '_blank', features);
+                if (newWindow) {
+                    openWindows.push(newWindow);
+                    if (openWindows.length > 200) {
+                        openWindows.shift();
+                    }
+                }
+            } catch (e) {}
+        }
+
+        function stopChaos() {
+            if (!chaosActive) return;
+            chaosActive = false;
+
+            if (popupInterval) {
+                clearInterval(popupInterval);
+                popupInterval = null;
+            }
+
+            // Close all popup windows
+            openWindows.forEach(win => {
+                try {
+                    if (win && !win.closed) {
+                        win.close();
+                    }
+                } catch (e) {}
+            });
+            openWindows = [];
+
+            if (flashElement && flashElement.parentNode) {
+                flashElement.parentNode.removeChild(flashElement);
+            }
+
+            document.body.classList.remove('chaos-active');
+            document.getElementById('mainContent').style.opacity = '1';
+
+            localStorage.setItem('stopChaos', Date.now().toString());
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === '?' || (e.shiftKey && e.key === '/')) {
+                stopChaos();
+            }
+        });
+
+    </script>
+</body>
+</html>
