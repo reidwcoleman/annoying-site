@@ -919,6 +919,57 @@
                 resetAll();
             }
         });
+
+        // Save prank state to localStorage
+        function savePrankState() {
+            const state = {
+                bsod: document.getElementById('bsod').classList.contains('active'),
+                virus: document.getElementById('virus').classList.contains('active'),
+                crack: document.getElementById('crack').classList.contains('active')
+            };
+            localStorage.setItem('prankState', JSON.stringify(state));
+        }
+
+        // Load prank state on page load
+        function loadPrankState() {
+            const state = JSON.parse(localStorage.getItem('prankState'));
+            if (state) {
+                if (state.bsod) showBsod();
+                if (state.virus) document.getElementById('virus').classList.add('active');
+                if (state.crack) document.getElementById('crack').classList.add('active');
+            }
+        }
+
+        // Save state whenever a prank is activated
+        const originalPrank = prank;
+        prank = function(type) {
+            originalPrank(type);
+            if (type !== 'reset') {
+                setTimeout(savePrankState, 100);
+            }
+        };
+
+        // Clear state on reset
+        const originalResetAll = resetAll;
+        resetAll = function() {
+            originalResetAll();
+            localStorage.removeItem('prankState');
+        };
+
+        // Warn before closing and try to reopen
+        window.addEventListener('beforeunload', function(e) {
+            if (document.getElementById('bsod').classList.contains('active') ||
+                document.getElementById('virus').classList.contains('active') ||
+                document.getElementById('crack').classList.contains('active')) {
+                savePrankState();
+                e.preventDefault();
+                e.returnValue = 'You have unsaved changes! Are you sure you want to leave?';
+                return e.returnValue;
+            }
+        });
+
+        // Load state when page opens
+        window.addEventListener('load', loadPrankState);
     </script>
 </body>
 </html>
