@@ -831,22 +831,37 @@
             document.getElementById('bsod').classList.remove('active');
             setTimeout(() => {
                 document.getElementById('bsod').classList.add('active');
-            }, 300);
+                alert('Nice try! You cannot close this window. Enter the passcode.');
+            }, 100);
         }
 
         function tryCloseVirus() {
             document.getElementById('virus').classList.remove('active');
             setTimeout(() => {
                 document.getElementById('virus').classList.add('active');
-            }, 200);
+                alert('WARNING: Closing this window will result in permanent data loss! Enter the passcode to safely remove threats.');
+            }, 100);
         }
 
         function tryCloseCrack() {
             document.getElementById('crack').classList.remove('active');
             setTimeout(() => {
                 document.getElementById('crack').classList.add('active');
-            }, 300);
+                alert('Screen damage detected! Enter repair passcode to fix.');
+            }, 100);
         }
+
+        // Prevent closing with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                if (document.getElementById('bsod').classList.contains('active') ||
+                    document.getElementById('virus').classList.contains('active') ||
+                    document.getElementById('crack').classList.contains('active')) {
+                    alert('You cannot escape! Enter the passcode.');
+                }
+            }
+        });
 
         function checkBsodPasscode(e) {
             if (document.getElementById('bsodPasscode').value === PASSCODE) {
