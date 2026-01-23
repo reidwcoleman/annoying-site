@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusAI - The Future of Intelligence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Click the Ball!</title>
     <style>
         * {
             margin: 0;
@@ -13,750 +12,155 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             min-height: 100vh;
-            background: #0a0a0a;
-            color: white;
-            overflow-x: hidden;
-        }
-
-        /* Animated gradient background */
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.08) 0%, transparent 60%);
-            pointer-events: none;
-            animation: gradientShift 10s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        /* Grid pattern overlay */
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #9333ea, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: white;
-        }
-
-        .nav-btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255,255,255,0.15);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 80px 40px 40px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(147, 51, 234, 0.15);
-            border: 1px solid rgba(147, 51, 234, 0.3);
-            padding: 8px 16px;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            color: #c084fc;
-            margin-bottom: 15px;
-        }
-
-        .badge-dot {
-            width: 8px;
-            height: 8px;
-            background: #22c55e;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 16px;
-            max-width: 800px;
-        }
-
-        h1 span {
-            background: linear-gradient(135deg, #9333ea, #3b82f6, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.6);
-            max-width: 550px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
+            color: #4ade80;
+            font-size: 3rem;
             margin-bottom: 40px;
+            text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+            animation: glow 2s ease-in-out infinite;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #9333ea, #7c3aed);
-            border: none;
-            color: white;
-            padding: 14px 36px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(74, 222, 128, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(74, 222, 128, 0.8), 0 0 60px rgba(74, 222, 128, 0.4); }
+        }
+
+        .soccer-ball {
+            width: 200px;
+            height: 200px;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 0 40px rgba(147, 51, 234, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 60px rgba(147, 51, 234, 0.6);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            padding: 14px 36px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(255,255,255,0.3);
-        }
-
-        /* AI Visual */
-        .ai-visual {
             position: relative;
-            width: 220px;
-            height: 220px;
-            margin-bottom: 25px;
+            animation: float 3s ease-in-out infinite, spin 8s linear infinite;
+            transition: transform 0.3s;
         }
 
-        .ai-orb {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 110px;
-            height: 110px;
-            background: linear-gradient(135deg, #9333ea, #3b82f6, #ec4899);
-            border-radius: 50%;
-            animation: orbFloat 6s ease-in-out infinite;
-            box-shadow:
-                0 0 60px rgba(147, 51, 234, 0.5),
-                0 0 100px rgba(59, 130, 246, 0.3),
-                inset 0 0 40px rgba(255,255,255,0.1);
+        .soccer-ball:hover {
+            transform: scale(1.1);
         }
 
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -55%) scale(1.05); }
+        .soccer-ball:active {
+            transform: scale(0.95);
         }
 
-        .ai-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 1px solid rgba(147, 51, 234, 0.3);
-            border-radius: 50%;
-            animation: ringPulse 4s ease-in-out infinite;
-        }
-
-        .ai-ring:nth-child(2) { width: 150px; height: 150px; animation-delay: 0.5s; }
-        .ai-ring:nth-child(3) { width: 185px; height: 185px; animation-delay: 1s; }
-        .ai-ring:nth-child(4) { width: 220px; height: 220px; animation-delay: 1.5s; }
-
-        @keyframes ringPulse {
-            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.05); }
-        }
-
-        /* Stats */
-        .stats {
-            display: flex;
-            gap: 60px;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.5);
-            margin-top: 4px;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 100px 60px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 60px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 20px;
-            padding: 40px;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(147, 51, 234, 0.3);
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(59, 130, 246, 0.2));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 24px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            color: rgba(255,255,255,0.5);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        /* Footer hint */
-        .hint {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(255,255,255,0.1);
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            z-index: 10;
-        }
-
-        /* Ready Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal {
-            background: linear-gradient(145deg, #1a1a2e, #16162a);
-            border: 1px solid rgba(147, 51, 234, 0.3);
-            border-radius: 24px;
-            padding: 50px 60px;
-            text-align: center;
-            box-shadow: 0 0 100px rgba(147, 51, 234, 0.3);
-            animation: modalAppear 0.3s ease;
-        }
-
-        @keyframes modalAppear {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .modal-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            animation: iconPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes iconPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .modal h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, #9333ea, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .modal p {
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 40px;
-            font-size: 1rem;
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .modal-btn {
-            padding: 16px 50px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-        }
-
-        .modal-btn-yes {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: white;
-            box-shadow: 0 0 30px rgba(34, 197, 94, 0.4);
-        }
-
-        .modal-btn-yes:hover {
-            box-shadow: 0 0 50px rgba(34, 197, 94, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .modal-btn-no {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .modal-btn-no:hover {
-            background: rgba(239, 68, 68, 0.2);
-            border-color: rgba(239, 68, 68, 0.5);
-        }
-
-        /* Shutdown Screen */
-        .shutdown-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 99999;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .shutdown-overlay.active {
-            display: flex;
-            animation: shutdownFade 1.5s ease;
-        }
-
-        @keyframes shutdownFade {
-            0% { opacity: 0; }
-            30% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        .shutdown-spinner {
-            width: 60px;
-            height: 60px;
-            border: 3px solid rgba(255,255,255,0.1);
-            border-top-color: #0078d4;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 40px;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         @keyframes spin {
+            from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        .shutdown-text {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 60px;
-            text-align: center;
-            line-height: 1.8;
+        .soccer-ball svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 30px rgba(74, 222, 128, 0.4));
         }
 
-        .shutdown-error {
-            background: #1a1a1a;
-            border: 2px solid #ff3333;
-            border-radius: 8px;
-            padding: 40px 60px;
-            text-align: center;
-            animation: errorAppear 0.5s ease 3s forwards;
-            opacity: 0;
+        .ball-outer {
+            fill: #4ade80;
         }
 
-        @keyframes errorAppear {
-            to { opacity: 1; }
+        .ball-pattern {
+            fill: #166534;
         }
 
-        .shutdown-error-icon {
-            font-size: 4rem;
-            color: #ff3333;
-            margin-bottom: 20px;
-        }
-
-        .shutdown-error h3 {
-            color: #ff3333;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .shutdown-error p {
-            color: rgba(255,255,255,0.7);
-            font-size: 1rem;
-            margin-bottom: 30px;
-        }
-
-        .shutdown-error-code {
-            background: #0d0d0d;
-            padding: 20px;
-            border-radius: 6px;
-            font-family: 'Courier New', monospace;
-            color: #ff6666;
+        .hint {
+            position: fixed;
+            bottom: 30px;
+            color: rgba(255, 255, 255, 0.3);
             font-size: 0.9rem;
-            margin-bottom: 30px;
         }
 
-        .shutdown-usb-prompt {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(255, 165, 0, 0.1);
-            border: 1px solid rgba(255, 165, 0, 0.3);
-            border-radius: 8px;
-            margin-top: 20px;
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
         }
 
-        .shutdown-usb-icon {
-            font-size: 2rem;
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #4ade80;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: rise 10s infinite;
         }
 
-        .shutdown-usb-text {
-            color: #ffa500;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .shutdown-passcode {
-            margin-top: 40px;
-        }
-
-        .shutdown-passcode input {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            padding: 14px 28px;
-            font-size: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            width: 250px;
-        }
-
-        .shutdown-passcode input::placeholder {
-            color: rgba(255,255,255,0.4);
-        }
-
-        .shutdown-passcode p {
-            color: rgba(255,255,255,0.3);
-            font-size: 0.8rem;
-            margin-top: 10px;
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="bg-gradient"></div>
-    <div class="grid-overlay"></div>
+    <div class="particles" id="particles"></div>
 
-    <nav>
-        <div class="logo">NexusAI</div>
-        <div class="nav-links">
-            <a href="#">Products</a>
-            <a href="#">Research</a>
-            <a href="#">Documentation</a>
-            <a href="#">Pricing</a>
-            <button class="nav-btn">Sign In</button>
-        </div>
-    </nav>
+    <h1>Click the Ball!</h1>
 
-    <section class="hero">
-        <div class="badge">
-            <span class="badge-dot"></span>
-            Now Available - NexusAI 5.0
-        </div>
+    <div class="soccer-ball" onclick="triggerChaos()">
+        <svg viewBox="0 0 100 100">
+            <!-- Ball base -->
+            <circle cx="50" cy="50" r="48" class="ball-outer"/>
 
-        <div class="ai-visual">
-            <div class="ai-ring"></div>
-            <div class="ai-ring"></div>
-            <div class="ai-ring"></div>
-            <div class="ai-orb"></div>
-        </div>
+            <!-- Pentagon patterns (soccer ball style) -->
+            <polygon points="50,15 62,28 58,43 42,43 38,28" class="ball-pattern"/>
+            <polygon points="80,35 85,50 75,62 60,55 65,40" class="ball-pattern"/>
+            <polygon points="20,35 35,40 40,55 25,62 15,50" class="ball-pattern"/>
+            <polygon points="30,75 42,65 58,65 70,75 60,88 40,88" class="ball-pattern"/>
 
-        <h1>The Future of <span>Artificial Intelligence</span> is Here</h1>
-
-        <p class="hero-subtitle">
-            Experience the most advanced AI system ever created. NexusAI understands,
-            creates, and innovates at a level that was once thought impossible.
-        </p>
-
-        <div class="cta-buttons">
-            <button class="btn-primary" onclick="showReadyModal()">Get Started Free</button>
-            <button class="btn-secondary">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                Watch Demo
-            </button>
-        </div>
-
-        <div class="stats">
-            <div class="stat">
-                <div class="stat-value">1T+</div>
-                <div class="stat-label">Parameters</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">99.9%</div>
-                <div class="stat-label">Accuracy</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">10M+</div>
-                <div class="stat-label">Users</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="features">
-        <h2 class="section-title">Powered by Next-Gen Technology</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🧠</div>
-                <h3>Neural Processing</h3>
-                <p>Our quantum-enhanced neural networks process information 1000x faster than traditional systems.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔮</div>
-                <h3>Predictive Intelligence</h3>
-                <p>Advanced algorithms that anticipate your needs before you even know them yourself.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h3>Enterprise Security</h3>
-                <p>Military-grade encryption with zero-knowledge architecture to protect your data.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Real-Time Learning</h3>
-                <p>Continuously evolving AI that adapts and improves with every interaction.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌐</div>
-                <h3>Global Scale</h3>
-                <p>Deployed across 50+ data centers worldwide for instant response anywhere.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3>Precision Output</h3>
-                <p>Unmatched accuracy in code generation, content creation, and data analysis.</p>
-            </div>
-        </div>
-    </section>
-
-    <p class="hint">Passcode: 1234</p>
-
-    <!-- Ready Modal -->
-    <div class="modal-overlay" id="readyModal">
-        <div class="modal">
-            <div class="modal-icon">🚀</div>
-            <h2>Are You Ready?</h2>
-            <p>You're about to experience the most powerful AI on the planet.</p>
-            <div class="modal-buttons">
-                <button class="modal-btn modal-btn-yes" onclick="handleYes()">Yes, Let's Go!</button>
-                <button class="modal-btn modal-btn-no" onclick="handleNo()">No, I'm Scared</button>
-            </div>
-        </div>
+            <!-- Highlight -->
+            <ellipse cx="35" cy="30" rx="12" ry="8" fill="rgba(255,255,255,0.3)" transform="rotate(-30 35 30)"/>
+        </svg>
     </div>
 
-    <!-- Shutdown Screen -->
-    <div class="shutdown-overlay" id="shutdownScreen">
-        <div class="shutdown-spinner"></div>
-        <div class="shutdown-text">
-            Shutting down...<br>
-            Please wait while your system powers off safely.
-        </div>
-        <div class="shutdown-error">
-            <div class="shutdown-error-icon">⚠️</div>
-            <h3>CRITICAL SYSTEM FAILURE</h3>
-            <p>Your system has encountered a fatal error and cannot continue.</p>
-            <div class="shutdown-error-code">
-                Error Code: 0x00000F4<br>
-                CRITICAL_OBJECT_TERMINATION<br>
-                System boot files corrupted or missing
-            </div>
-            <div class="shutdown-usb-prompt">
-                <span class="shutdown-usb-icon">💾</span>
-                <span class="shutdown-usb-text">INPUT RECOVERY USB</span>
-            </div>
-            <div class="shutdown-passcode">
-                <input type="text" id="shutdownPasscode" placeholder="Enter recovery code" onkeyup="checkShutdownPasscode(event)">
-                <p>Recovery authorization required</p>
-            </div>
-        </div>
-    </div>
+    <p class="hint">Go ahead, click it...</p>
 
     <script>
-        const PASSCODE = "1234";
-
-        function showReadyModal() {
-            document.getElementById('readyModal').classList.add('active');
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            particle.style.animationDuration = (8 + Math.random() * 6) + 's';
+            particle.style.width = (5 + Math.random() * 10) + 'px';
+            particle.style.height = particle.style.width;
+            particlesContainer.appendChild(particle);
         }
 
-        function hideReadyModal() {
-            document.getElementById('readyModal').classList.remove('active');
-        }
-
-        function handleYes() {
-            hideReadyModal();
-            // Spawn chaos windows with crazy AI/virus content
-            // Using unique window names and full features string forces new windows, not tabs
+        function triggerChaos() {
+            // Spawn chaos popup windows
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => {
                     const w = 450 + Math.random() * 200;
@@ -771,43 +175,6 @@
                 }, i * 80);
             }
         }
-
-        function handleNo() {
-            hideReadyModal();
-            document.getElementById('shutdownScreen').classList.add('active');
-        }
-
-        function checkShutdownPasscode(e) {
-            if (document.getElementById('shutdownPasscode').value === PASSCODE) {
-                document.getElementById('shutdownScreen').classList.remove('active');
-                document.getElementById('shutdownPasscode').value = '';
-            }
-        }
-
-        // Click outside modal to close
-        document.getElementById('readyModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                hideReadyModal();
-            }
-        });
-
-        // Prevent escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                e.preventDefault();
-                if (document.getElementById('shutdownScreen').classList.contains('active')) {
-                    alert('System recovery required. Insert recovery USB or enter code.');
-                }
-            }
-        });
-
-        // Emergency reset with ?
-        document.addEventListener('keydown', function(e) {
-            if (e.key === '?' || (e.shiftKey && e.key === '/')) {
-                document.getElementById('shutdownScreen').classList.remove('active');
-                document.getElementById('readyModal').classList.remove('active');
-            }
-        });
     </script>
 </body>
 </html>
