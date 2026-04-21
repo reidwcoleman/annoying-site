@@ -15,13 +15,30 @@ The game is built to meet these design goals:
 
 - Node.js 18+ (no npm install needed — the server uses only Node built-ins).
 
-## Run it
+## Run it on your own Wi-Fi
+
+The server has to run on **your own computer** (laptop/desktop) that's connected to the same Wi-Fi as the devices that will play. A remote sandbox or cloud VM won't work for LAN play because their IPs aren't reachable from your phone.
 
 ```bash
+# on your computer, in the project folder:
 node server.js
 ```
 
-The server prints both a local URL and a LAN URL. Anyone on the same Wi-Fi can open the LAN URL (e.g. `http://192.168.1.42:3000`) on their phone/laptop and play. The host creates a room, shares the 4-letter code, everyone joins, and the host starts the game.
+You'll see something like:
+
+```
+On this machine:   http://localhost:3000
+Share these Wi-Fi URLs with teammates on the same network:
+  http://192.168.1.42:3000   (en0)
+```
+
+Open the `192.168.x.x` URL on any phone or laptop that's on the same Wi-Fi. The host creates a room, shares the 4-letter code, everyone joins on their own device, and the host starts the game.
+
+**If only `localhost` shows up** and there's no `192.168.x.x` URL, make sure your computer is connected to Wi-Fi (not just Ethernet to an isolated network), and allow inbound connections on port 3000 in your firewall.
+
+- **macOS:** System Settings → Network → Firewall → Options → allow Node.
+- **Windows:** Windows Defender Firewall will prompt the first time you run the server — click "Allow access" and check **Private networks**.
+- **Linux:** `sudo ufw allow 3000/tcp` if `ufw` is enabled.
 
 To change the port: `PORT=8080 node server.js`.
 

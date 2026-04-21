@@ -716,26 +716,66 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
+// Returns { privateIps: [...], otherIps: [...] }
+// "private" = routable on a typical home/office Wi-Fi LAN (RFC 1918).
+// "other"   = public IPs, CGNAT, link-local, or reserved test ranges.
 function lanAddresses() {
+  const privateIps = [];
+  const otherIps = [];
   const ifaces = os.networkInterfaces();
-  const addrs = [];
   for (const name of Object.keys(ifaces)) {
     for (const info of ifaces[name]) {
-      if (info.family === 'IPv4' && !info.internal) addrs.push(info.address);
+      if (info.family !== 'IPv4' || info.internal) continue;
+      const ip = info.address;
+      if (isPrivateLAN(ip)) privateIps.push({ name, ip });
+      else otherIps.push({ name, ip });
     }
   }
-  return addrs;
+  return { privateIps, otherIps };
+}
+
+function isPrivateLAN(ip) {
+  const m = ip.split('.').map(Number);
+  if (m.length !== 4 || m.some(n => isNaN(n))) return false;
+  // 10.0.0.0/8
+  if (m[0] === 10) return true;
+  // 172.16.0.0/12
+  if (m[0] === 172 && m[1] >= 16 && m[1] <= 31) return true;
+  // 192.168.0.0/16
+  if (m[0] === 192 && m[1] === 168) return true;
+  return false;
 }
 
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 server.listen(PORT, '0.0.0.0', () => {
-  const ips = lanAddresses();
+  const { privateIps, otherIps } = lanAddresses();
   console.log('');
-  console.log('  🦠  Outbreak Response is running.');
+  console.log('  🦠  Outbreak Response is running on port ' + PORT + '.');
   console.log('');
-  console.log('  Local:   http://localhost:' + PORT);
-  for (const ip of ips) console.log('  LAN:     http://' + ip + ':' + PORT);
+  console.log('  On this machine:   http://localhost:' + PORT);
   console.log('');
-  console.log('  Share a LAN URL with anyone on the same Wi-Fi to play.');
+  if (privateIps.length > 0) {
+    console.log('  Share these Wi-Fi URLs with teammates on the same network:');
+    for (const { ip, name } of privateIps) {
+      console.log('    http://' + ip + ':' + PORT + '   (' + name + ')');
+    }
+    console.log('');
+    console.log('  They just open the URL in their browser. No install.');
+  } else {
+    console.log('  ⚠️  No private Wi-Fi IP detected on this machine.');
+    if (otherIps.length > 0) {
+      console.log('     Detected these non-private IPs (likely unreachable from your phone):');
+      for (const { ip, name } of otherIps) {
+        console.log('       ' + ip + ' (' + name + ')');
+      }
+    }
+    console.log('');
+    console.log('  To host on your real Wi-Fi, run this server on your OWN computer:');
+    console.log('     1. Install Node.js 18+ (https://nodejs.org)');
+    console.log('     2. Clone or copy this repo to your computer');
+    console.log('     3. Run:  node server.js');
+    console.log('     4. Your computer will print a 192.168.x.x URL.');
+    console.log('     5. Make sure your computer\'s firewall allows port ' + PORT + '.');
+  }
   console.log('');
 });
