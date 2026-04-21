@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0b1020" />
+<title>Outbreak Response - Cooperative Pathogen Game</title>
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ===== LOBBY ===== -->
+  <section id="view-home" class="view active">
+    <header class="hero">
+      <div class="logo">
+        <svg viewBox="0 0 64 64" class="logo-svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="20" fill="#0ea5e9" opacity="0.15"/>
+          <circle cx="32" cy="32" r="14" fill="#0ea5e9" opacity="0.3"/>
+          <g stroke="#38bdf8" stroke-width="2" fill="none">
+            <circle cx="32" cy="32" r="8"/>
+            <line x1="32" y1="12" x2="32" y2="20"/>
+            <line x1="32" y1="44" x2="32" y2="52"/>
+            <line x1="12" y1="32" x2="20" y2="32"/>
+            <line x1="44" y1="32" x2="52" y2="32"/>
+            <line x1="18" y1="18" x2="24" y2="24"/>
+            <line x1="40" y1="40" x2="46" y2="46"/>
+            <line x1="46" y1="18" x2="40" y2="24"/>
+            <line x1="24" y1="40" x2="18" y2="46"/>
+          </g>
+          <circle cx="20" cy="20" r="2" fill="#e11d48"/>
+          <circle cx="44" cy="20" r="2" fill="#16a34a"/>
+          <circle cx="20" cy="44" r="2" fill="#a855f7"/>
+          <circle cx="44" cy="44" r="2" fill="#f59e0b"/>
+        </svg>
+      </div>
+      <h1>Outbreak Response</h1>
+      <p class="tagline">A cooperative pathogen-fighting game for 2 to 6 players.<br>
+      Work together. Treat, prevent, and cure disease before the world falls.</p>
+    </header>
+
+    <div class="card">
+      <label class="field">
+        <span>Your name</span>
+        <input id="name-input" maxlength="20" placeholder="e.g. Dr. Reid" autocomplete="off" />
+      </label>
+
+      <div class="row">
+        <button id="btn-create" class="primary">Create Room</button>
+      </div>
+
+      <div class="divider"><span>or</span></div>
+
+      <label class="field">
+        <span>Room code</span>
+        <input id="code-input" maxlength="4" placeholder="ABCD" autocomplete="off" style="text-transform:uppercase;" />
+      </label>
+      <div class="row">
+        <button id="btn-join" class="secondary">Join Room</button>
+      </div>
+
+      <div id="home-error" class="error-msg" hidden></div>
+    </div>
+
+    <details class="card how-to">
+      <summary>How to play (click to expand)</summary>
+      <div class="howto-body">
+        <h3>Goal</h3>
+        <p>Work together as a health response team to cure all four kinds of pathogen before 3 regions fall.</p>
+        <h3>Pathogen categories</h3>
+        <ul>
+          <li><span class="chip chip-virus">Virus</span> &mdash; treated with antivirals and rest; prevented with vaccines and masks.</li>
+          <li><span class="chip chip-bacteria">Bacteria</span> &mdash; treated with antibiotics; prevented with hygiene and safe food.</li>
+          <li><span class="chip chip-fungus">Fungus</span> &mdash; treated with antifungals; prevented by keeping skin dry and clean.</li>
+          <li><span class="chip chip-parasite">Parasite</span> &mdash; treated with antiparasitics; prevented with clean water and insect control.</li>
+        </ul>
+        <h3>On your turn</h3>
+        <ol>
+          <li><strong>Move</strong> to an adjacent region (costs 1 AP).</li>
+          <li><strong>Treat</strong> an infection by correctly answering a pathogen quiz (2 AP, 1 AP for Doctor).</li>
+          <li><strong>Prevent</strong> by running a public-health campaign (2 AP, 1 AP for Nurse). Creates a shield.</li>
+          <li><strong>Share Intel</strong> with a teammate in the same region to give them bonus AP next turn.</li>
+          <li>End your turn. The team earns research only by answering correctly.</li>
+        </ol>
+        <p>When all players have played, new infections appear. A category is <strong>cured</strong> at 4 research tokens.</p>
+        <h3>Win / lose</h3>
+        <p>Win: cure all 4 pathogen categories. Lose: 3 regions fall, or 12 rounds pass.</p>
+        <h3>Roles</h3>
+        <ul id="home-roles"></ul>
+      </div>
+    </details>
+
+    <footer class="foot">
+      <p>Built for team learning &mdash; includes every pathogen's real prevention and treatment facts.</p>
+    </footer>
+  </section>
+
+  <!-- ===== LOBBY ROOM ===== -->
+  <section id="view-lobby" class="view">
+    <header class="hero compact">
+      <h2>Room <span id="lobby-code" class="code"></span></h2>
+      <p id="lobby-share" class="tagline"></p>
+    </header>
+    <div class="card">
+      <h3>Players (<span id="lobby-count">0</span>/6)</h3>
+      <ul id="lobby-players" class="players"></ul>
+      <div class="row" id="lobby-host-actions" hidden>
+        <button id="btn-start" class="primary">Start Game</button>
+      </div>
+      <p id="lobby-wait" class="subtle">Waiting for the host to start the game&hellip;</p>
+      <div class="row">
+        <button id="btn-leave-lobby" class="ghost">Leave</button>
+      </div>
+      <div id="lobby-error" class="error-msg" hidden></div>
+    </div>
+  </section>
+
+  <!-- ===== GAME ===== -->
+  <section id="view-game" class="view">
+    <header class="game-topbar">
+      <div class="topbar-left">
+        <span class="pill" id="top-round">Round 1</span>
+        <span class="pill" id="top-outbreaks">Outbreaks: 0/3</span>
+      </div>
+      <div class="topbar-center">
+        <span id="top-turn" class="turn-indicator">Turn: &mdash;</span>
+      </div>
+      <div class="topbar-right">
+        <span class="pill pill-ap" id="top-ap">AP: 0</span>
+        <button id="btn-log-toggle" class="icon-btn" title="Show log">&#9776;</button>
+      </div>
+    </header>
+
+    <div id="research-bar" class="research-bar" aria-label="Research progress">
+      <!-- filled dynamically -->
+    </div>
+
+    <main class="game-main">
+      <section class="map-panel">
+        <div id="map" class="map"></div>
+      </section>
+
+      <aside id="side-panel" class="side-panel">
+        <div class="panel-tabs">
+          <button class="tab active" data-tab="actions">Actions</button>
+          <button class="tab" data-tab="info">Pathogens</button>
+          <button class="tab" data-tab="log">Log</button>
+          <button class="tab" data-tab="chat">Chat</button>
+        </div>
+
+        <div id="tab-actions" class="tab-body active">
+          <div id="you-card" class="you-card">
+            <div class="you-name" id="you-name">&mdash;</div>
+            <div class="you-role" id="you-role">&mdash;</div>
+            <div class="you-where" id="you-where">&mdash;</div>
+          </div>
+
+          <div id="turn-banner" class="turn-banner"></div>
+
+          <div id="actions-container" class="actions-container">
+            <!-- actions injected -->
+          </div>
+        </div>
+
+        <div id="tab-info" class="tab-body">
+          <h3>Pathogen Reference</h3>
+          <div id="pathogen-list"></div>
+        </div>
+
+        <div id="tab-log" class="tab-body">
+          <h3>Event Log</h3>
+          <ul id="log-list" class="log-list"></ul>
+        </div>
+
+        <div id="tab-chat" class="tab-body">
+          <h3>Team Chat</h3>
+          <ul id="chat-list" class="chat-list"></ul>
+          <form id="chat-form" class="chat-form">
+            <input id="chat-input" maxlength="200" placeholder="Type a message..." autocomplete="off" />
+            <button type="submit" class="primary">Send</button>
+          </form>
+        </div>
+      </aside>
+    </main>
+  </section>
+
+  <!-- ===== QUIZ MODAL ===== -->
+  <div id="quiz-modal" class="modal" hidden>
+    <div class="modal-card">
+      <div id="quiz-prompt" class="quiz-prompt"></div>
+      <div id="quiz-question" class="quiz-question"></div>
+      <div id="quiz-choices" class="quiz-choices"></div>
+      <div id="quiz-result" class="quiz-result" hidden></div>
+      <div class="row">
+        <button id="quiz-close" class="primary" hidden>Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GAME OVER MODAL ===== -->
+  <div id="end-modal" class="modal" hidden>
+    <div class="modal-card">
+      <h2 id="end-title"></h2>
+      <p id="end-message"></p>
+      <div id="end-stats"></div>
+      <div class="row">
+        <button id="end-home" class="primary">Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" hidden></div>
+
+</div>
+
+<script src="/client.js"></script>
+</body>
+</html>

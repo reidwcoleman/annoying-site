@@ -1,0 +1,154 @@
+{
+  "categories": {
+    "virus": {
+      "name": "Virus",
+      "color": "#e11d48",
+      "icon": "virus",
+      "description": "Tiny particles that hijack living cells to reproduce. They are not alive on their own.",
+      "general_prevention": ["Get vaccinated", "Wash hands often", "Wear a mask when ill", "Cover coughs and sneezes", "Avoid close contact with sick people"],
+      "general_treatment": ["Rest and hydration", "Antiviral medication (for specific viruses)", "Supportive care (fever reducers, fluids)", "Isolation to prevent spread"]
+    },
+    "bacteria": {
+      "name": "Bacteria",
+      "color": "#16a34a",
+      "icon": "bacteria",
+      "description": "Single-celled living organisms. Some are harmless or helpful; others cause illness.",
+      "general_prevention": ["Wash hands with soap", "Cook food thoroughly", "Clean wounds immediately", "Use clean drinking water", "Practice safe food handling"],
+      "general_treatment": ["Antibiotics prescribed by a doctor", "Complete the full course of medication", "Rest and fluids", "Wound cleaning and dressing"]
+    },
+    "fungus": {
+      "name": "Fungus",
+      "color": "#a855f7",
+      "icon": "fungus",
+      "description": "Organisms like molds and yeasts. Some thrive on skin or moist surfaces and can cause infection.",
+      "general_prevention": ["Keep skin clean and dry", "Wear breathable clothing and footwear", "Do not share towels or shoes", "Shower after sweating", "Disinfect shared surfaces"],
+      "general_treatment": ["Topical antifungal cream or powder", "Oral antifungal medication for severe cases", "Keep affected area dry and exposed to air", "Replace contaminated items"]
+    },
+    "parasite": {
+      "name": "Parasite",
+      "color": "#f59e0b",
+      "icon": "parasite",
+      "description": "Organisms that live on or in a host and benefit at the host's expense.",
+      "general_prevention": ["Drink treated or boiled water", "Use insect repellent and bed nets", "Wash fruits and vegetables", "Avoid contact with contaminated soil", "Cook meat thoroughly"],
+      "general_treatment": ["Antiparasitic medication", "Rehydration therapy", "Follow-up testing to confirm clearance", "Treat all household members if needed"]
+    }
+  },
+  "pathogens": [
+    {
+      "id": "influenza",
+      "name": "Influenza",
+      "category": "virus",
+      "fact": "Influenza spreads through respiratory droplets and can mutate every year, which is why a new flu vaccine is made each season.",
+      "prevention": ["Annual flu vaccine", "Frequent hand washing", "Covering coughs and sneezes"],
+      "treatment": ["Rest and fluids", "Antiviral medication like oseltamivir if prescribed early", "Fever reducers"]
+    },
+    {
+      "id": "covid19",
+      "name": "SARS-CoV-2 (COVID-19)",
+      "category": "virus",
+      "fact": "SARS-CoV-2 spreads mainly through airborne droplets and aerosols in poorly ventilated spaces.",
+      "prevention": ["COVID vaccine and boosters", "Well-fitted mask indoors when cases are high", "Good ventilation and distance from sick people"],
+      "treatment": ["Rest and hydration", "Antiviral medication for high-risk patients", "Monitor oxygen and seek care if breathing worsens"]
+    },
+    {
+      "id": "norovirus",
+      "name": "Norovirus",
+      "category": "virus",
+      "fact": "Norovirus is extremely contagious and causes sudden vomiting and diarrhea. Hand sanitizer alone does not kill it well.",
+      "prevention": ["Wash hands with soap and water (not just sanitizer)", "Do not prepare food when sick", "Disinfect surfaces with bleach"],
+      "treatment": ["Oral rehydration to replace fluids", "Rest", "Seek care if dehydration is severe"]
+    },
+    {
+      "id": "strep",
+      "name": "Strep Throat (Streptococcus)",
+      "category": "bacteria",
+      "fact": "Strep throat is caused by group A Streptococcus and can lead to rheumatic fever if untreated.",
+      "prevention": ["Wash hands", "Do not share cups or utensils", "Cover coughs"],
+      "treatment": ["Antibiotics such as penicillin or amoxicillin", "Complete the full antibiotic course", "Rest and warm fluids"]
+    },
+    {
+      "id": "ecoli",
+      "name": "E. coli (pathogenic strains)",
+      "category": "bacteria",
+      "fact": "Harmful strains of E. coli often come from undercooked ground beef, raw produce, or contaminated water.",
+      "prevention": ["Cook ground beef to 160 degrees F", "Wash produce", "Avoid unpasteurized milk and juice"],
+      "treatment": ["Rehydration", "Most cases resolve on their own; some antibiotics can make certain strains worse, so follow a doctor's guidance", "Hospital care for severe cases"]
+    },
+    {
+      "id": "tuberculosis",
+      "name": "Tuberculosis (TB)",
+      "category": "bacteria",
+      "fact": "TB is caused by Mycobacterium tuberculosis and spreads through the air from prolonged close contact.",
+      "prevention": ["BCG vaccination in high-risk areas", "Ventilated indoor spaces", "Screening and treatment of latent TB"],
+      "treatment": ["Long course of multiple antibiotics for 6 or more months", "Directly observed therapy to ensure completion", "Isolation while infectious"]
+    },
+    {
+      "id": "athletes-foot",
+      "name": "Athlete's Foot (Tinea pedis)",
+      "category": "fungus",
+      "fact": "Athlete's foot thrives in warm, damp environments like sweaty shoes and locker-room floors.",
+      "prevention": ["Dry feet thoroughly after washing", "Wear sandals in public showers", "Change socks when damp"],
+      "treatment": ["Topical antifungal cream", "Keep feet dry and aired out", "Disinfect shoes"]
+    },
+    {
+      "id": "ringworm",
+      "name": "Ringworm (Tinea corporis)",
+      "category": "fungus",
+      "fact": "Ringworm is not a worm; it is a fungal infection that forms a ring-shaped rash on the skin.",
+      "prevention": ["Do not share towels or clothes", "Shower after sports", "Treat pets that show bald patches"],
+      "treatment": ["Topical antifungal cream for 2 to 4 weeks", "Oral antifungal for widespread cases", "Wash bedding in hot water"]
+    },
+    {
+      "id": "candidiasis",
+      "name": "Candidiasis (Yeast Infection)",
+      "category": "fungus",
+      "fact": "Candida yeast naturally lives on the body but overgrows when the balance is disrupted by antibiotics, moisture, or illness.",
+      "prevention": ["Keep skin folds clean and dry", "Wear breathable underwear", "Avoid unnecessary antibiotic use"],
+      "treatment": ["Antifungal cream, tablet, or suppository", "Treat underlying causes such as uncontrolled diabetes", "Follow up if infections recur"]
+    },
+    {
+      "id": "malaria",
+      "name": "Malaria",
+      "category": "parasite",
+      "fact": "Malaria is caused by Plasmodium parasites carried by Anopheles mosquitoes. It kills hundreds of thousands of people each year.",
+      "prevention": ["Insecticide-treated bed nets", "Mosquito repellent with DEET", "Preventive antimalarial medication when traveling"],
+      "treatment": ["Antimalarial drugs such as artemisinin-based combination therapy", "Hospital care for severe cases", "Test and treat household members if needed"]
+    },
+    {
+      "id": "giardia",
+      "name": "Giardiasis",
+      "category": "parasite",
+      "fact": "Giardia is a microscopic parasite that spreads through contaminated water, even in clear mountain streams.",
+      "prevention": ["Boil or filter untreated water", "Wash hands after using the toilet and before eating", "Avoid swallowing lake or pool water"],
+      "treatment": ["Antiparasitic medication like metronidazole or tinidazole", "Rehydration", "Retest if symptoms return"]
+    },
+    {
+      "id": "tapeworm",
+      "name": "Tapeworm",
+      "category": "parasite",
+      "fact": "Tapeworms can be picked up from undercooked pork, beef, or fish and can live in the intestines for years.",
+      "prevention": ["Cook meat to a safe internal temperature", "Freeze fish before eating raw preparations", "Wash hands and produce well"],
+      "treatment": ["Single-dose antiparasitic such as praziquantel", "Follow-up stool tests", "Treat household members and pets if exposed"]
+    }
+  ],
+  "quiz": [
+    { "q": "A patient has a bacterial infection. Which treatment is most appropriate?", "choices": ["Antibiotics prescribed by a doctor", "Antiviral medication", "Antifungal cream", "No treatment needed"], "answer": 0, "explain": "Bacterial infections are treated with antibiotics. It is important to finish the full course." },
+    { "q": "Which pathogen type is NOT alive on its own and must infect a host cell to reproduce?", "choices": ["Bacteria", "Fungus", "Virus", "Parasite"], "answer": 2, "explain": "Viruses are not alive on their own. They hijack host cells to make more copies of themselves." },
+    { "q": "A child has ringworm on their arm. What is the best treatment?", "choices": ["Antibiotic pill", "Topical antifungal cream", "Antiviral medicine", "Deworming tablet"], "answer": 1, "explain": "Ringworm is a fungal infection, not a worm. It is treated with antifungal cream." },
+    { "q": "Which of these is the BEST prevention for the seasonal flu?", "choices": ["Antibiotics", "Annual flu vaccine", "Vitamin C megadoses", "Avoiding cold weather"], "answer": 1, "explain": "The annual flu vaccine is updated every year to match circulating strains and is the most effective prevention." },
+    { "q": "Malaria is spread by:", "choices": ["Contaminated food", "Mosquito bites", "Coughing", "Dirty needles only"], "answer": 1, "explain": "Malaria is caused by Plasmodium parasites carried by Anopheles mosquitoes. Bed nets and repellent help prevent it." },
+    { "q": "Which treatment helps most for viral gastroenteritis like norovirus?", "choices": ["Antibiotics", "Oral rehydration and rest", "Antifungal cream", "Antiparasitic pill"], "answer": 1, "explain": "Antibiotics do not kill viruses. Fluids, rest, and careful hygiene are the main treatments." },
+    { "q": "What is the single most effective everyday action to prevent many infections?", "choices": ["Taking vitamins", "Washing hands with soap and water", "Drinking hot tea", "Wearing gloves at all times"], "answer": 1, "explain": "Hand washing with soap and water breaks the chain of transmission for many bacteria, viruses, and parasites." },
+    { "q": "Tuberculosis is caused by a:", "choices": ["Virus", "Bacterium", "Fungus", "Parasite"], "answer": 1, "explain": "TB is a bacterial infection that requires a long course of multiple antibiotics." },
+    { "q": "The best way to prevent giardiasis while hiking is to:", "choices": ["Drink straight from the stream", "Boil or filter water before drinking", "Take an antibiotic beforehand", "Only drink at night"], "answer": 1, "explain": "Giardia parasites can live in clear water. Boiling or filtering makes water safe." },
+    { "q": "A patient finishes feeling better after 3 days of a 10-day antibiotic course. They should:", "choices": ["Stop, they feel fine", "Save the rest for next time", "Finish all 10 days as prescribed", "Double the dose to speed recovery"], "answer": 2, "explain": "Stopping antibiotics early can leave surviving bacteria that develop resistance. Always finish the course." },
+    { "q": "Which is a good way to prevent athlete's foot?", "choices": ["Wear damp socks", "Walk barefoot in public showers", "Dry feet well and wear sandals in locker rooms", "Share shoes with friends"], "answer": 2, "explain": "Fungi love warm, damp feet. Drying well and avoiding barefoot contact in locker rooms helps." },
+    { "q": "Which statement about vaccines is TRUE?", "choices": ["They cure infections after you get them", "They train your immune system to recognize pathogens", "They only work for bacteria", "They replace handwashing"], "answer": 1, "explain": "Vaccines teach the immune system to recognize a pathogen so it can respond quickly if exposed later." },
+    { "q": "Quarantine (separating sick people) is most useful for stopping:", "choices": ["Athlete's foot outbreaks", "Tapeworms", "Airborne viruses like influenza and COVID-19", "Sunburns"], "answer": 2, "explain": "Isolating sick people cuts the chain of transmission for airborne respiratory viruses." },
+    { "q": "Which pathogen category includes yeast infections like candidiasis?", "choices": ["Virus", "Bacteria", "Fungus", "Parasite"], "answer": 2, "explain": "Candida is a yeast, which is a type of fungus. It is treated with antifungal medication." },
+    { "q": "To prevent E. coli from ground beef, you should:", "choices": ["Cook it to 160 degrees F", "Eat it raw for better nutrients", "Rinse with cold water only", "Freeze it for 5 minutes"], "answer": 0, "explain": "Cooking ground beef to 160 degrees F kills harmful E. coli strains." },
+    { "q": "Which of these does NOT help prevent the spread of respiratory viruses?", "choices": ["Covering coughs and sneezes", "Washing hands", "Sharing drinking cups", "Staying home when sick"], "answer": 2, "explain": "Sharing cups directly spreads droplets. The other actions all reduce transmission." },
+    { "q": "A tapeworm infection is usually treated with:", "choices": ["A single antiparasitic dose like praziquantel", "A 2-week antibiotic", "Antifungal shampoo", "A flu shot"], "answer": 0, "explain": "Tapeworms respond to a targeted antiparasitic drug. Cooking meat thoroughly prevents infection." },
+    { "q": "Which group of diseases is usually treated with antibiotics?", "choices": ["Colds and flu", "Strep throat and TB", "Ringworm and athlete's foot", "Malaria and giardiasis"], "answer": 1, "explain": "Strep throat and TB are bacterial and respond to antibiotics. Viruses, fungi, and parasites need different treatments." }
+  ]
+}

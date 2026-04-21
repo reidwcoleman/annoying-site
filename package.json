@@ -1,0 +1,12 @@
+{
+  "name": "outbreak-response",
+  "version": "1.0.0",
+  "description": "Outbreak Response - cooperative multiplayer web game about pathogens, prevention and treatment",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
