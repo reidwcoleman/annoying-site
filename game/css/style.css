@@ -1,0 +1,58 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: #1b2a1f;
+  color: #f4e9d0;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#game-frame {
+  position: relative;
+  border: 6px solid #6b4a2b;
+  border-radius: 10px;
+  box-shadow: 0 0 0 4px #3d2a17, 0 18px 40px rgba(0,0,0,0.6);
+  background: #000;
+  line-height: 0;
+}
+
+canvas#game {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  width: 800px;
+  height: 600px;
+  max-width: 96vw;
+  max-height: 82vh;
+  background: #4a8f3c;
+  cursor: default;
+}
+
+#loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: #f4e9d0;
+  background: #2c3e2f;
+}
+
+#hint {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #b7a680;
+  text-align: center;
+  padding: 0 10px;
+}
+
+@media (max-width: 640px) {
+  #hint { font-size: 11px; }
+}
